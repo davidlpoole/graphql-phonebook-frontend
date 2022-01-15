@@ -11,6 +11,19 @@ query {
 }
 `
 
+const Persons = ({ persons }) => {
+  return (
+    <div>
+      <h2>Persons</h2>
+      {persons.map(p =>
+        <div key={p.name}>
+          {p.name} {p.phone}
+        </div>
+      )}
+    </div>
+  )
+}
+
 const App = () => {
   const result = useQuery(ALL_PERSONS)
 
@@ -20,7 +33,7 @@ const App = () => {
 
   return (
     <div>
-      {result.data.allPersons.map(p => p.name).join(', ')}
+      <Persons persons={result.data.allPersons} />
     </div>
   )
 }
